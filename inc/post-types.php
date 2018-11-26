@@ -79,7 +79,6 @@ function ii_custom_taxonomies() {
                 'plural'    => 'Art Types',
                 'single'    => 'Art Type',
                 'taxonomy'  => 'arttypes',
-                'slug'      => 'artwork',
                 'show_admin_column'=>true
             )
         );
