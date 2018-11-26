@@ -1843,9 +1843,19 @@ body{font-family:"Noto Sans KR","Gill Sans",sans-serif;font-size:14px;line-heigh
 .banner-section .flex-direction-nav a{color:#FFF;width:35px;height:40px;background:rgba(0,0,0,0.5);text-align:center;overflow:hidden;top:60%}
 .banner-section .flex-direction-nav a:before{display:inline-block;color:#FFF;font-size:20px;line-height:40px}
 .error-404 .page-header{text-align:center}
+.error-404 .page-header h1{margin-bottom:0}
+.error-404 .page-header p{margin:0 0 1.5em}
 .subpage #primary{padding-top:30px}
 .subpage #primary .page-title{text-align:center}
 .taxonomy-description{margin-bottom:30px}
+.page-link-list{margin-top:30px;text-align:center}
+.page-link-list ul.linklist{display:inline-block}
+.page-link-list ul{margin:0;padding:0;list-style:none;text-align:left}
+.page-link-list ul li{padding-top:4px;padding-bottom:4px;padding-left:14px;position:relative}
+.page-link-list ul li:before{content:"";display:block;width:5px;height:5px;background:#9c9484;position:absolute;left:0;top:13px}
+.page-link-list ul li ul{margin-left:15px}
+.page-link-list a{color:#7e715a;text-decoration:none}
+.page-link-list a:hover{color:#333}
 .blog .format-aside .entry-title,.archive .format-aside .entry-title{display:none}
 .comment-content a{word-wrap:break-word}
 .bypostauthor{display:block}

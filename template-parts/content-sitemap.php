@@ -2,7 +2,7 @@
 $post_type_with_categories[] = array('id'=>11,'taxonomy'=>'arttypes');
 $links = generate_sitemap($post_type_with_categories);
 if($links) { ?>
-    <div class="page-link-list">
+    <div class="page-link-list clear">
         <ul class="linklist">
         <?php foreach($links as $a) {
             $parent_id = $a['parent_id'];

@@ -69,6 +69,12 @@
 }
 .error-404 .page-header {
 	text-align: center;
+	h1 {
+		margin-bottom: 0;
+	}
+	p {
+		margin: 0 0 1.5em;
+	}
 }
 
 .subpage #primary {
@@ -79,4 +85,43 @@
 }
 .taxonomy-description {
 	margin-bottom: 30px;
+}
+.page-link-list {
+	margin-top: 30px;
+	text-align: center;
+	ul.linklist {
+		display: inline-block;
+	}
+	ul {
+		margin: 0 0;
+		padding: 0 0;
+		list-style: none;
+		text-align: left;
+		li {
+			padding-top: 4px;
+			padding-bottom: 4px;
+			padding-left: 14px;
+			position: relative;
+			&:before {
+				content:"";
+				display: block;
+				width: 5px;
+				height: 5px;
+				background: $color-gold;
+				position: absolute;
+				left: 0;
+				top: 13px;
+			}
+			ul {
+				margin-left: 15px;
+			}
+		}
+	}
+	a {
+		color: $color-dark-gold;
+		text-decoration: none;
+		&:hover {
+			color: #333;
+		}
+	}
 }
