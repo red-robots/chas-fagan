@@ -24,8 +24,8 @@
   * Edit the variables as per your project requirements.
   */
 
-var project             = 'AC-Starter'; // Project Name.
-var projecturl          = 'http://localhost:8888/austincrane/ACStarter/'; // Project URL. Could be something like localhost:8888.
+var project             = 'Chas Fagan'; // Project Name.
+var projecturl          = 'http://localhost/ac/chasfagan/'; // Project URL. Could be something like localhost:8888.
 
 
 var styleSRC            = './assets/sass/style.scss'; // Path to main .scss file.

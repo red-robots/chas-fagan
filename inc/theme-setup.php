@@ -69,6 +69,16 @@ function acstarter_setup() {
     'default-color' => 'ffffff',
     'default-image' => '',
   ) ) );
+
+  
+   // Add theme support for Custom Logo.
+  add_theme_support( 'custom-logo', array(
+    'width'       => 250,
+    'height'      => 250,
+    'flex-width'  => true,
+    'flex-height' => true,
+  ) );
+    
 }
 endif;
 add_action( 'after_setup_theme', 'acstarter_setup' );

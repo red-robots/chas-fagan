@@ -10,31 +10,31 @@
 /*-------------------------------------
 	Custom client login, link and title.
 ---------------------------------------*/
-function my_login_logo() { ?>
-<style type="text/css">
-  body.login div#login h1 a {
-  	background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
-  	background-size: 327px 67px;
-  	width: 327px;
-  	height: 67px;
-  }
-</style>
+function my_login_logo() { 
+  $custom_logo_id = get_theme_mod( 'custom_logo' );
+  $logoImg = wp_get_attachment_image_src($custom_logo_id,'large');
+  $logo_url = ($logoImg) ? $logoImg[0] : '';
+  if($custom_logo_id) { ?>
+  <style type="text/css">
+    body.login div#login h1 a {
+      <?php if($logo_url) { ?>
+        background-image: url(<?php echo $logo_url; ?>);
+      <?php } ?> 
+      background-size: contain;
+      width: 100%;
+      height: 67px;
+    }
+  </style>
 <?php }
+}
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
 // Change Link
 function loginpage_custom_link() {
-	return the_permalink();
+	return get_site_url();
 }
 add_filter('login_headerurl','loginpage_custom_link');
 
-/*-------------------------------------
-	Favicon.
----------------------------------------*/
-function mytheme_favicon() { 
- echo '<link rel="shortcut icon" href="' . get_bloginfo('stylesheet_directory') . '/images/favicon.ico" >'; 
-} 
-add_action('wp_head', 'mytheme_favicon');
 
 /*-------------------------------------
 	Adds Options page for ACF.

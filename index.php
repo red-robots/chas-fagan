@@ -12,21 +12,17 @@
  * @package ACStarter
  */
 
-get_header(); ?>
+get_header(); 
+$wp_query = new WP_Query(array('post_status'=>'private','pagename'=>'home'));
+?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
+	<?php if ( have_posts() ) : the_post(); ?>
 
-		<?php
-			/* Start the Loop */
-			$wp_query = new WP_Query(array('post_status'=>'private','pagename'=>'homepage'));
-			if ( have_posts() ) : the_post(); 
-				get_template_part( 'template-parts/content', 'index' );
-			endif; ?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+	<?php endif; ?>
+	</main><!-- #main -->
+</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();
