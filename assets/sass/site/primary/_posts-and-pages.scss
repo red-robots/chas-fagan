@@ -118,10 +118,31 @@
 		}
 	}
 	a {
-		color: $color-dark-gold;
+		color: $color-links;
 		text-decoration: none;
 		&:hover {
-			color: #333;
+			color: $color-light-gold;
+		}
+	}
+}
+.single-artwork {
+	.page-title {
+		margin-bottom: 0;
+	}
+}
+.breadcrumb {
+	text-align: center;
+	color: $color-light-gold;
+	a, span {
+		display: inline-block;
+		padding-left: 3px;
+		padding-right: 3px;
+		font-size: 13px;
+	}
+	a {
+		color: $color-links;
+		&:hover {
+			color: $color-light-gold;
 		}
 	}
 }
