@@ -198,6 +198,11 @@
 	margin: 0 auto;
 	position: relative;
 	cursor: pointer;
+	-webkit-appearance: none;
+	border: none;
+	box-shadow: none;
+	background: transparent;
+	outline: none;
 	@media screen and (min-width: $tabwidth) {
 		display: none;
 	}
@@ -225,6 +230,11 @@
 	}
 	span:after {
 		top: 9px;
+	}
+	&:hover,&:active,&:focus {
+		border: none;
+		box-shadow: none;
+		background: transparent;
 	}
 }
 .main-navigation.toggled .menu-toggle {
