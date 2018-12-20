@@ -11,7 +11,7 @@ get_header();
 $obj = get_queried_object();
 ?>
 
-	<div id="primary" class="full-content-area clear">
+	<div id="primary" class="mid-wrapper clear">
 		<main id="main" class="site-main" role="main">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<header class="page-header">
@@ -39,9 +39,19 @@ $obj = get_queried_object();
 						<span class="current"><?php echo get_the_title();?></span>
 					</div>
 				</header>
-				<?php if( get_the_content() ) { ?>
-				<div class="entry-content"><?php the_content() ?></div>
-				<?php } ?>
+
+				<div class="content-wrapper artwork-content clear">
+					<div class="image-container">
+						<?php the_post_thumbnail('large'); ?>
+					</div>
+					<div class="entry-content">
+						<?php $sub_title = get_field('second_line_title');  ?>
+						<?php if($sub_title) { ?>
+						<div class="subtitle"><?php echo $sub_title; ?></div>
+						<?php } ?>
+						<?php the_content() ?>
+					</div>
+				</div>
 			<?php endwhile;  ?>
 
 		</main><!-- #main -->
