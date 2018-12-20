@@ -9,8 +9,11 @@
 
 get_header(); 
 $obj = get_queried_object();
+$taxonomy = (isset($obj->taxonomy)) ? $obj->taxonomy : '';
 $category_name = (isset($obj->name)) ? $obj->name : '';
-?>
+if($taxonomy=='arttypes') { 
+	get_template_part('template-parts/artwork-single-category');
+} else { ?>
 
 	<div id="primary" class="full-content-area clear">
 		<main id="main" class="site-main" role="main">
@@ -49,6 +52,7 @@ $category_name = (isset($obj->name)) ? $obj->name : '';
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
+<?php } ?>
 
 <?php
 //get_sidebar();

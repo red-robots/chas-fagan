@@ -131,4 +131,10 @@ jQuery(document).ready(function ($) {
 	------------------------------------*/
 	new WOW().init();
 
+
+	$(".box-with-link").on("click",function(){
+		var url = $(this).attr('data-url');
+		window.location.href = url;
+	});
+
 });// END #####################################    END

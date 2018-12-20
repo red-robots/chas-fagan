@@ -1798,14 +1798,13 @@ html[xmlns] .flexslider .slides{display:block}
 .flex-direction-nav .flex-next{opacity:1;right:10px}
 }.widget{margin:0 0 1.5em}
 .widget select{max-width:100%}
-*{-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;-o-hyphens:none;hyphens:none}
-div{overflow-wrap:break-word;word-wrap:break-word;-ms-word-break:break-all;word-break:break-all;word-break:break-word;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;-o-hyphens:none;hyphens:none}
+*,div,h1,h2,h3,h4,h5,h6,p,li,a,span,strong{overflow-wrap:normal;word-wrap:normal;-ms-word-break:normal;word-break:normal;word-break:normal;-ms-hyphens:none;-moz-hyphens:none;-webkit-hyphens:none;hyphens:none;page-break-inside:avoid}
+*{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
 a{color:#d6a94f;-webkit-transition:all ease-out .3s;transition:all ease-out .3s}
 a:hover{color:#b2aa9a}
-h1,h2,h3,h4,h5,h6,p,li,a,span,strong{overflow-wrap:normal;word-wrap:normal;-ms-word-break:normal;word-break:normal;word-break:normal;-ms-hyphens:none;-moz-hyphens:none;-webkit-hyphens:none;hyphens:none;page-break-inside:avoid}
 html,body{height:100%}
 body{font-family:"Noto Sans KR","Gill Sans",sans-serif;font-size:14px;line-height:1.5;color:#595651;background:#FFF}
-.sitebg{width:100%;height:100%;position:fixed;top:0;left:0;background:#FFF;box-shadow:inset 0 0 150px 0 rgba(156,148,132,0.5)}
+.sitebg{width:100%;height:100%;position:fixed;top:0;left:0;background:#393535;box-shadow:inset 0 0 180px 0 rgba(0,0,0,0.6)}
 #page{overflow:hidden;position:relative;z-index:5}
 .wrapper,.clear{clear:both}
 .wrapper:before,.wrapper:after,.clear:before,.clear:after{content:" ";display:table}
@@ -1847,7 +1846,7 @@ body{font-family:"Noto Sans KR","Gill Sans",sans-serif;font-size:14px;line-heigh
 .error-404 .page-header{text-align:center}
 .error-404 .page-header h1{margin-bottom:0}
 .error-404 .page-header p{margin:0 0 1.5em}
-.subpage #primary{padding-top:30px}
+.subpage #primary{padding-top:50px}
 .subpage #primary .page-title{text-align:center}
 .taxonomy-description{margin-bottom:30px}
 .page-link-list{margin-top:30px;text-align:center}
@@ -1863,6 +1862,21 @@ body{font-family:"Noto Sans KR","Gill Sans",sans-serif;font-size:14px;line-heigh
 .breadcrumb a,.breadcrumb span{display:inline-block;padding-left:3px;padding-right:3px;font-size:13px}
 .breadcrumb a{color:#d6a94f}
 .breadcrumb a:hover{color:#b2aa9a}
+.pagetitle{text-align:center}
+.pagetitle h1{margin:0;text-transform:uppercase;font-size:15px;font-weight:normal;letter-spacing:1px;color:#9c9484}
+.art-post-entries{margin-top:25px}
+@media screen and (min-width:780px){.art-post-entries .masonry{-moz-column-count:2;-webkit-column-count:2;column-count:2}
+}@media screen and (min-width:980px){.art-post-entries .masonry{-moz-column-count:3;-webkit-column-count:3;column-count:3}
+}.art-post-entries .box{display:inline-block;width:100%;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;margin-bottom:30px;cursor:pointer}
+.art-post-entries .inside{position:relative;padding-left:10px;padding-right:10px}
+.art-post-entries .inside img{width:100%;height:auto}
+.art-post-entries .title1,.art-post-entries .title2{text-align:center}
+.art-post-entries .title1{margin:0;text-transform:none;font-weight:600;font-size:16px}
+.art-post-entries .wrapp{position:relative}
+.art-post-entries .info{position:absolute;bottom:5px;left:0;width:100%;background:rgba(205,197,181,0.75);color:#393535;padding:15px;z-index:2;font-size:13px;visibility:hidden;overflow:hidden;max-height:0;opacity:0;-webkit-transition:all ease .5s;transition:all ease .5s}
+.art-post-entries .description{padding-top:5px}
+.art-post-entries .description p{margin-top:0;margin-bottom:0}
+.art-post-entries .box:hover .info{visibility:visible;overflow:visible;max-height:100%;opacity:1}
 .blog .format-aside .entry-title,.archive .format-aside .entry-title{display:none}
 .comment-content a{word-wrap:break-word}
 .bypostauthor{display:block}
