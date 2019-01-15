@@ -140,6 +140,8 @@
 .breadcrumb {
 	text-align: center;
 	color: $color-light-gold;
+	position: relative;
+    top: -4px;
 	a, span {
 		display: inline-block;
 		padding-left: 3px;
@@ -147,7 +149,7 @@
 		font-size: 13px;
 	}
 	span.current {
-		opacity: 0.5;
+		opacity: 0.35;
 	}
 	a {
 		color: $color-links;
@@ -334,12 +336,47 @@ figure.effect-zoe:hover .description {
     cursor: pointer;
 }
 
+.artwork-galleries {
+	.row {
+		margin-left: -8px;
+		margin-right: -8px;
+	}
+	.gallerydiv {
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		width: 25%;
+		padding-left: 8px;
+		padding-right: 8px;
+		margin-bottom: 16px;
+		float: left;
+		@media screen and (min-width: $midwidth) {
+			width: 25%;
+		}
+		a {
+			display: block;
+			float: left;
+			width: 100%;
+			border:1px solid transparent;
+			@include transition (all ease-out .3s);
+			&:hover {
+				border-color: #d6a94f;
+			}
+		}
+		img {
+			width: 100%;
+			height: auto;
+			float: left;
+		}
+	}
+}
+
 .artwork-content {
 	margin-top: 40px;
 	.image-container {
 		margin-bottom: 20px;
-		@media screen and (min-width: $tabwidth) {
-			width: 65%;
+		@media screen and (min-width: $midwidth) {
+			width: 57%;
 			float: left;
 			margin-bottom: 0;
 		}
@@ -350,8 +387,8 @@ figure.effect-zoe:hover .description {
 	}
 	.entry-content {
 		color: $color-gold;
-		@media screen and (min-width: $tabwidth) {
-			width: 31%;
+		@media screen and (min-width: $midwidth) {
+			width: 40%;
 			float: right;
 		}
 		p {
@@ -389,5 +426,13 @@ figure.effect-zoe:hover .description {
 
 .error404 .page-header h1 {
 	font-size: 27px;
+}
+.fancybox-toolbar button,
+.fancybox-navigation button {
+	-webkit-appearance: none;
+	border-radius: 0;
+	box-shadow: none;
+	background-color: transparent;
+	border: none;
 }
 

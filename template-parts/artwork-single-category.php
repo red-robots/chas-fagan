@@ -32,11 +32,14 @@ $term_id = (isset($obj->term_id) && $obj->term_id) ? $obj->term_id : '';
 		<div class="grid masonry clear">
 		<?php while ( $items->have_posts() ) : $items->the_post(); 
 			$image = get_the_post_thumbnail(); 
+			$post_id = get_the_ID();
+			$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+			$image_src = wp_get_attachment_image_src($post_thumbnail_id,'large');
 			$sub_title = get_field('second_line_title'); 
 			$short_description = get_field('short_description'); 
 			$pagelink = get_permalink(); ?>
 			<?php if($image) { ?>
-			<div class="box box-with-link" data-url="<?php echo $pagelink; ?>">
+			<div class="box box-with-link lazy" data-url="<?php echo $pagelink; ?>">
 				<div class="inside clear">
 					<figure class="effect-zoe">
 						<?php the_post_thumbnail('large'); ?>

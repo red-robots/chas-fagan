@@ -47,13 +47,24 @@ jQuery(document).ready(function ($) {
 	
 	/*
 	*
-	*	Colorbox
+	*	Fancybox 3
 	*
 	------------------------------------*/
-	$('a.gallery').colorbox({
-		rel:'gal',
-		width: '80%', 
-		height: '80%'
+	$('[data-fancybox="images"]').fancybox({
+		buttons: [
+		    "zoom",
+		    "slideShow",
+		    "fullScreen",
+		    "thumbs",
+		    "close"
+		],
+	    afterLoad : function(instance, current) {
+	        var pixelRatio = window.devicePixelRatio || 1;
+	        if ( pixelRatio > 1.5 ) {
+	            current.width  = current.width  / pixelRatio;
+	            current.height = current.height / pixelRatio;
+	        }
+	    }
 	});
 	
 	/*
@@ -131,6 +142,12 @@ jQuery(document).ready(function ($) {
 	------------------------------------*/
 	new WOW().init();
 
+	$('.lazy img').lazy({
+		delay: 5000,
+		effect: "fadeIn",
+		effectTime: 2000,
+		threshold: 0
+    });
 
 	$(".box-with-link").on("click",function(){
 		var url = $(this).attr('data-url');

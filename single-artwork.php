@@ -41,16 +41,47 @@ $obj = get_queried_object();
 				</header>
 
 				<div class="content-wrapper artwork-content clear">
+
 					<div class="image-container">
 						<?php the_post_thumbnail('large'); ?>
 					</div>
+
+					<?php 
+						$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+						$main_image = wp_get_attachment_url($post_thumbnail_id);
+						$main_filename = basename($main_image);
+						$sub_title = get_field('second_line_title');  
+						$galleries = get_field('gallery');  
+					?>
+
 					<div class="entry-content">
-						<?php $sub_title = get_field('second_line_title');  ?>
+						
+						<?php if($galleries) { ?>
+						<div class="artwork-galleries">
+							<div class="row clear">
+							<?php foreach($galleries as $g) {  
+								$filename = $g['filename'];
+								$image_src = $g['sizes']['thumbnail']; 
+								$image_caption = $g['caption'];
+								$title_att = '';
+								if($image_caption) {
+									$title_att = ' data-caption="'.$image_caption.'"';
+								} ?>
+								<div class="gallerydiv">
+									<a class="viewImageLink" data-fancybox="images" rel="gal" href="<?php echo $g['url'];?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $g['title'];?>" /></a>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+						<?php } ?>
+
 						<?php if($sub_title) { ?>
 						<div class="subtitle"><?php echo $sub_title; ?></div>
 						<?php } ?>
+
 						<?php the_content() ?>
 					</div>
+
 				</div>
 			<?php endwhile;  ?>
 
