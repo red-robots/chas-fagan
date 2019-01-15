@@ -77,7 +77,7 @@ jQuery(document).ready(function ($) {
     // options
 	 itemSelector: '.item',
 		  	masonry: {
-				gutter: 10
+				gutter: 0
 			}
  		 });
 	});
@@ -141,7 +141,7 @@ jQuery(document).ready(function ($) {
 	*
 	------------------------------------*/
 	new WOW().init();
-	
+
 	$(".box-with-link").on("click",function(){
 		var url = $(this).attr('data-url');
 		window.location.href = url;

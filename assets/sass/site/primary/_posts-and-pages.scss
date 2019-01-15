@@ -211,8 +211,8 @@ figure.effect-zoe:hover .description {
 		padding: 0 0;
 	}
 	.masonry {
-		margin-left: -10px;
-		margin-right: -10px;
+		margin-left: -14px;
+		margin-right: -14px;
 	}
 	.box {
 		display: block;
@@ -228,17 +228,14 @@ figure.effect-zoe:hover .description {
 		float: left;
 		@media screen and (min-width: $tabwidth) {
 			display: block;
-			width: 32.4%;
+			width: 33.333%;
 			margin: 0 0 30px;
-		}
-		@media screen and (min-width: $deskwidth) {
-			width: 32.7%;
 		}
 	}
 	.inside {
 		margin: 0 0;
 		position: relative;
-		padding: 0 10px;
+		padding: 0 14px;
 	}
 	.box img {
 		width: 100%;

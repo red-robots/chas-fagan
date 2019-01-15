@@ -1874,11 +1874,10 @@ figure.effect-zoe:hover figcaption,figure.effect-zoe:hover .title1,figure.effect
 .art-post-entries{margin-top:25px;text-align:center;padding-left:20px;padding-right:20px}
 @media screen and (min-width:780px){.art-post-entries{padding-left:0;padding-right:0}
 }.art-post-entries figure{margin:0;padding:0}
-.art-post-entries .masonry{margin-left:-10px;margin-right:-10px}
+.art-post-entries .masonry{margin-left:-14px;margin-right:-14px}
 .art-post-entries .box{display:block;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;margin-bottom:40px;cursor:pointer;-webkit-column-break-inside:avoid;page-break-inside:avoid;break-inside:avoid;width:100%;margin:0 auto 35px;display:block;float:left}
-@media screen and (min-width:780px){.art-post-entries .box{display:block;width:32.4%;margin:0 0 30px}
-}@media screen and (min-width:1300px){.art-post-entries .box{width:32.7%}
-}.art-post-entries .inside{margin:0;position:relative;padding:0 10px}
+@media screen and (min-width:780px){.art-post-entries .box{display:block;width:33.333%;margin:0 0 30px}
+}.art-post-entries .inside{margin:0;position:relative;padding:0 14px}
 .art-post-entries .box img{width:100%;height:auto;float:left}
 .art-post-entries .title1,.art-post-entries .title2{text-align:center;margin:0}
 .art-post-entries .title1{margin:0;font-weight:600;font-size:16px}
