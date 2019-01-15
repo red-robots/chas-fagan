@@ -130,7 +130,7 @@ function set_custom_cpt_columns($columns) {
     global $wp_query;
     $query = isset($wp_query->query) ? $wp_query->query : '';
     $post_type = ( isset($query['post_type']) ) ? $query['post_type'] : '';
-    
+
     if($post_type=='artwork') {
         unset( $columns['date'] );
         unset( $columns['taxonomy-arttypes'] );
@@ -166,5 +166,44 @@ function custom_post_column( $column, $post_id ) {
                 echo $the_photo;
         }
     }
-    
+}
+
+/* ARTWORKS - Custom Taxonomy Column */
+add_filter("manage_edit-arttypes_columns", 'custom_tax_columns'); 
+function custom_tax_columns($theme_columns) {
+    global $wp_query;
+    $new_columns = array(
+        'cb' => '<input type="checkbox" />',
+        'name' => __('Name'),
+        'tax_featured_image' => 'Featured Image',
+//      'description' => __('Description'),
+        'slug' => __('Slug'),
+        'posts' => __('Posts')
+        );
+    return $new_columns;
+}
+
+add_filter("manage_arttypes_custom_column", 'manage_theme_columns', 10, 3);
+function manage_theme_columns($out, $column_name, $theme_id) {
+    $term = get_term($theme_id, 'arttypes');
+    $project_page_id = get_field('artwork_featured_image',$term);
+    switch ($column_name) {
+        case 'tax_featured_image': 
+            $out = '<span class="tmphoto" style="display:inline-block;width:50px;height:50px;background:#e6e6e6;text-align:center;">';
+            if($project_page_id) {
+                $post_thumbnail_id = get_post_thumbnail_id( $project_page_id );
+                $image = wp_get_attachment_image_src($post_thumbnail_id,'large');
+                $imageSRC = $image[0];
+                $image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
+                $out .= '<img src="'.$imageSRC.'" alt="'.$image_alt.'" style="width:100%;height:auto" />';
+            } else {
+                $out .= '<i class="dashicons dashicons-format-image" style="font-size:25px;position:relative;top:14px;left:-2px;opacity:0.2;"></i>';
+            }
+            $out .= '</span>';
+            break;
+ 
+        default:
+            break;
+    }
+    return $out;    
 }
