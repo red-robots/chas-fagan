@@ -207,3 +207,5 @@ function manage_theme_columns($out, $column_name, $theme_id) {
     }
     return $out;    
 }
+
+
