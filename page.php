@@ -16,13 +16,21 @@ get_header(); ?>
 
 	<div id="primary" class="full-content-area clear">
 		<main id="main" class="site-main" role="main">
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php while ( have_posts() ) : the_post();
+				$has_image = (get_the_post_thumbnail()) ? true : false;
+				$col_class = ($has_image) ? 'has-image':'no-image';
+				?>
 				<header class="page-header">
 					<h1 class="page-title"><?php the_title() ?></h1>
 				</header>
-				<?php if( get_the_content() ) { ?>
-				<div class="entry-content"><?php the_content() ?></div>
-				<?php } ?>
+
+				<div class="entry-content-wrapper <?php echo $col_class?>">
+					<div class="entry-content"><?php the_content() ?></div>
+					<?php if($has_image) { ?>
+					<div class="imagediv"><?php echo get_the_post_thumbnail(); ?></div>
+					<?php } ?>
+				</div> 
+
 			<?php endwhile;  ?>
 
 		</main><!-- #main -->

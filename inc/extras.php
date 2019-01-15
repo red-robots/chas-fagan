@@ -144,10 +144,15 @@ function generate_sitemap($pageWithCats=null) {
             	}
             }
 
-            // $cat_args = array('hide_empty' => 1, 'parent' => 0, 'exclude'=>array(1));
-            // if($id == $news_ID) {
-            //     $lists[$id]['categories'] = get_categories($cat_args);
-            // }
+            $cat_args = array('hide_empty' => 1, 'parent' => 0, 'exclude'=>array(1));
+            $i_parent_ID = 8; /* Artwork page */
+            $artwork_terms = get_terms( array(
+                'taxonomy' => 'arttypes',
+                'hide_empty' => false,
+            ));
+            if($id == $i_parent_ID) {
+                $lists[$id]['categories'] = $artwork_terms;
+            }
         }
 
     }
