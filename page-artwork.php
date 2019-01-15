@@ -32,7 +32,7 @@ get_header(); ?>
 		));
 	if($terms) { ?>
 	<div class="art-post-entries clear categorylist">
-		<div class="grid masonry clear">
+		<div id="container" class="grid masonry clear">
 			<?php foreach($terms as $t) { 
 				$term_id = $t->term_id;
 				$term_name = $t->name;
@@ -55,15 +55,24 @@ get_header(); ?>
 					$obj = $items[0]; 
 					$post_id = $obj->ID;
 					$pagelink = get_term_link($term_id);
-					//$image = get_the_post_thumbnail($post_id); 
-					$post_thumbnail_id = get_post_thumbnail_id( $post_id );
-					$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
+					$project_page_id = get_field('artwork_featured_image',$t);
+					if($project_page_id) {
+						$post_thumbnail_id = get_post_thumbnail_id( $project_page_id );
+						$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
+						$imageSRC = $image[0];
+						$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
+					} else {
+						$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+						$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
+						$imageSRC = $image[0];
+						$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
+					}
 					?>
 					<?php if($image) { ?>
-						<div class="box box-with-link" data-url="<?php echo $pagelink; ?>">
-							<div class="inside clear" style="background-image:url('<?php echo $image[0]?>')">
+						<div class="box box-with-link item" title="<?php echo $term_name; ?>" data-url="<?php echo $pagelink; ?>">
+							<div class="inside clear">
 								<figure class="effect-zoe">
-									<?php echo get_the_post_thumbnail($post_id,'large'); ?>
+									<img class="featimg" src="<?php echo $imageSRC?>" alt="<?php echo $image_alt?>" />
 									<figcaption>
 										<p class="title1"><?php echo $term_name; ?></p>
 									</figcaption>

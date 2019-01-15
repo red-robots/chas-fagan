@@ -24,6 +24,9 @@ a {
 		color: $color-light-gold;
 	}
 }
+html {
+	overflow: auto!important;
+}
 html,body {
 	height: 100%;
 }

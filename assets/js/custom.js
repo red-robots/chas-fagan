@@ -72,12 +72,12 @@ jQuery(document).ready(function ($) {
 	*	Isotope with Images Loaded
 	*
 	------------------------------------*/
-	var $container = $('#container').imagesLoaded( function() {
+	var $container = $('.masonry').imagesLoaded( function() {
   	$container.isotope({
     // options
 	 itemSelector: '.item',
-		  masonry: {
-			gutter: 15
+		  	masonry: {
+				gutter: 10
 			}
  		 });
 	});
@@ -141,14 +141,7 @@ jQuery(document).ready(function ($) {
 	*
 	------------------------------------*/
 	new WOW().init();
-
-	$('.lazy img').lazy({
-		delay: 5000,
-		effect: "fadeIn",
-		effectTime: 2000,
-		threshold: 0
-    });
-
+	
 	$(".box-with-link").on("click",function(){
 		var url = $(this).attr('data-url');
 		window.location.href = url;
