@@ -151,13 +151,6 @@ jQuery(document).ready(function ($) {
 
 	$(document).on("click",".hoverGalleryImage",function(e){
 		e.preventDefault();
-		// var imageSrc = $(this).attr('data-href');
-		// var append = $('<img src="'+imageSrc+'" alt=""/>');
-		// $("#mainImageFrame2").attr('href',imageSrc);
-		// $("#mainImageFrame2").html(append);
-		// $("#mainImageFrame1").hide();
-		// $('.hoverGalleryImage').removeClass('active');
-		// $(this).addClass('active');
 		do_action_gallery( $(this) );
 	});
 
