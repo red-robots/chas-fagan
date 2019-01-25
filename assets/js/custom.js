@@ -57,16 +57,10 @@ jQuery(document).ready(function ($) {
 		    "fullScreen",
 		    "thumbs",
 		    "close"
-		],
-	    afterLoad : function(instance, current) {
-	        var pixelRatio = window.devicePixelRatio || 1;
-	        if ( pixelRatio > 1.5 ) {
-	            current.width  = current.width  / pixelRatio;
-	            current.height = current.height / pixelRatio;
-	        }
-	    }
+		]
 	});
-	
+
+
 	/*
 	*
 	*	Isotope with Images Loaded
@@ -147,4 +141,33 @@ jQuery(document).ready(function ($) {
 		window.location.href = url;
 	});
 
+	// $('.hoverGalleryImage').hover(
+	// 	function(){
+	// 		do_action_gallery( $(this) );
+	// 	}, function() {
+			
+	// 	}
+	// );
+
+	$(document).on("click",".hoverGalleryImage",function(e){
+		e.preventDefault();
+		// var imageSrc = $(this).attr('data-href');
+		// var append = $('<img src="'+imageSrc+'" alt=""/>');
+		// $("#mainImageFrame2").attr('href',imageSrc);
+		// $("#mainImageFrame2").html(append);
+		// $("#mainImageFrame1").hide();
+		// $('.hoverGalleryImage').removeClass('active');
+		// $(this).addClass('active');
+		do_action_gallery( $(this) );
+	});
+
+	function do_action_gallery(sThis) {
+		var imageSrc = sThis.attr('data-href');
+		var append = $('<img src="'+imageSrc+'" alt=""/>');
+		$("#mainImageFrame2").attr('href',imageSrc);
+		$("#mainImageFrame2").html(append);
+		$("#mainImageFrame1").hide();
+		$('.hoverGalleryImage').removeClass('active');
+		sThis.addClass('active');
+	}
 });// END #####################################    END

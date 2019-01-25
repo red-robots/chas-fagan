@@ -5,6 +5,7 @@ $taxonomy = (isset($obj->taxonomy)) ? $obj->taxonomy : '';
 $category_name = (isset($obj->name)) ? $obj->name : '';
 $term_slug = (isset($obj->slug) && $obj->slug) ? $obj->slug : '';
 $term_id = (isset($obj->term_id) && $obj->term_id) ? $obj->term_id : '';
+$popup_categories = array(3,4);
 ?>
 
 <div id="primary" class="full-content-area clear">
@@ -34,25 +35,42 @@ $term_id = (isset($obj->term_id) && $obj->term_id) ? $obj->term_id : '';
 				$image = get_the_post_thumbnail(); 
 				$post_id = get_the_ID();
 				$post_thumbnail_id = get_post_thumbnail_id( $post_id );
-				$image_src = wp_get_attachment_image_src($post_thumbnail_id,'large');
+				$image_src = wp_get_attachment_image_src($post_thumbnail_id,'full');
 				$sub_title = get_field('second_line_title'); 
 				$short_description = get_field('short_description'); 
 				$pagelink = get_permalink(); ?>
 				<?php if($image) { ?>
-				<div class="box box-with-link item" data-url="<?php echo $pagelink; ?>">
-					<div class="inside clear">
-						<figure class="effect-zoe">
-							<?php the_post_thumbnail('large'); ?>
-							<figcaption>
-								<p class="title1"><?php echo get_the_title(); ?></p>
-								<p class="title2"><?php echo $sub_title; ?></p>
-								<?php if($short_description) { ?>
-								<div class="description"><?php echo $short_description; ?></div>
-								<?php } ?>
-							</figcaption>
-						</figure>
-					</div>
-				</div>
+					<?php if( in_array($term_id, $popup_categories) ) { ?>
+
+						<?php /* Pop-up image */ ?>
+						<div class="box item">
+							<div class="inside clear">
+								<a class="effect-zoe popup-image" data-fancybox="images" rel="next" href="<?php echo $image_src[0]?>">
+									<?php the_post_thumbnail('large'); ?>
+								</a>
+							</div>
+						</div>
+
+					<?php } else { ?>
+
+						<?php /* Open new page */ ?>
+						<div class="box box-with-link item" data-url="<?php echo $pagelink; ?>">
+							<div class="inside clear">
+								<figure class="effect-zoe">
+									<?php the_post_thumbnail('large'); ?>
+									<figcaption>
+										<p class="title1"><?php echo get_the_title(); ?></p>
+										<p class="title2"><?php echo $sub_title; ?></p>
+										<?php if($short_description) { ?>
+										<div class="description"><?php echo $short_description; ?></div>
+										<?php } ?>
+									</figcaption>
+								</figure>
+							</div>
+						</div>
+
+					<?php } ?>
+
 				<?php } ?>
 			<?php endwhile; ?>
 		</div>

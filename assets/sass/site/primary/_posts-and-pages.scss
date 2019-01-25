@@ -171,7 +171,11 @@
 		color: $color-gold;
 	}
 }
-figure.effect-zoe figcaption {
+.effect-zoe {
+	display: block;
+	position: relative;
+}
+.effect-zoe figcaption {
 	position: absolute;
     top: auto;
     bottom: 0;
@@ -188,10 +192,10 @@ figure.effect-zoe figcaption {
 	padding: 15px;
 }
 
-figure.effect-zoe:hover figcaption, 
-figure.effect-zoe:hover .title1,
-figure.effect-zoe:hover .title2,
-figure.effect-zoe:hover .description {
+.effect-zoe:hover figcaption, 
+.effect-zoe:hover .title1,
+.effect-zoe:hover .title2,
+.effect-zoe:hover .description {
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
 }
@@ -206,7 +210,7 @@ figure.effect-zoe:hover .description {
 		padding-left: 0;
 		padding-right: 0;
 	}
-	figure {
+	.effect-zoe {
 		margin: 0 0;
 		padding: 0 0;
 	}
@@ -233,6 +237,7 @@ figure.effect-zoe:hover .description {
 		}
 	}
 	.inside {
+		display: block;
 		margin: 0 0;
 		position: relative;
 		padding: 0 14px;
@@ -283,6 +288,17 @@ figure.effect-zoe:hover .description {
 			opacity: 1;
 		}
 	}
+	.popup-image {
+		cursor: pointer;
+		img {
+			@include transition(all ease-out .3s);
+		}
+		&:hover img {
+			-webkit-transform: scale(1.08);
+			-ms-transform: scale(1.08);
+			transform: scale(1.08);
+		}
+	}
 }
 
 .grid figure {
@@ -314,8 +330,9 @@ figure.effect-zoe:hover .description {
 			float: left;
 			width: 100%;
 			border:1px solid transparent;
+			cursor: pointer;
 			@include transition (all ease-out .3s);
-			&:hover {
+			&.active, &:hover {
 				border-color: #d6a94f;
 			}
 		}
@@ -379,7 +396,6 @@ figure.effect-zoe:hover .description {
 		}
 	}
 }
-
 .error404 .page-header h1 {
 	font-size: 27px;
 }
