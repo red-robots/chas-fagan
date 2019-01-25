@@ -60,7 +60,6 @@ jQuery(document).ready(function ($) {
 		]
 	});
 
-
 	/*
 	*
 	*	Isotope with Images Loaded
@@ -155,12 +154,26 @@ jQuery(document).ready(function ($) {
 	});
 
 	function do_action_gallery(sThis) {
+		var filename = sThis.attr('data-filename');
 		var imageSrc = sThis.attr('data-href');
 		var append = $('<img src="'+imageSrc+'" alt=""/>');
-		$("#mainImageFrame2").attr('href',imageSrc);
-		$("#mainImageFrame2").html(append);
-		$("#mainImageFrame1").hide();
+		var image1 = $("#mainImageFrame1").attr('data-filename');
 		$('.hoverGalleryImage').removeClass('active');
 		sThis.addClass('active');
+		$("#mainImageFrame1").attr('data-filename',filename);
+		$("#mainImageFrame1").html(append);
 	}
+
+	$(document).on("click","#mainImageFrame1",function(e){
+		e.preventDefault();
+		var filename = $(this).attr('data-filename');
+		$(".gthumbnail").each(function(){
+			var thumbname = $(this).attr('data-filename');
+			if(thumbname==filename) {
+				$(this).trigger('click');
+			}
+		});
+	});
+
+
 });// END #####################################    END

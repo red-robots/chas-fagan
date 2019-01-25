@@ -50,11 +50,10 @@ $obj = get_queried_object();
 						$galleries = get_field('gallery');  
 					?>
 					<div class="image-container">
-						<a id="mainImageFrame2" data-fancybox="images" rel="next"></a>
-						<a id="mainImageFrame1" class="popupImage" data-fancybox="images" rel="next" href="<?php echo $main_image_src[0];?>">
+						<a id="mainImageFrame1" class="mainImageFrame" data-filename="<?php echo $main_filename;?>" rel="next" href="<?php echo $main_image_src[0];?>">
 							<?php the_post_thumbnail('large'); ?>
 						</a>
-						<div style="display:none;">
+						<div id="theThumbnails" style="display:none;">
 						<?php if($galleries) { ?>
 							<?php foreach($galleries as $jj) {  
 								$filename = $jj['filename'];
@@ -64,9 +63,7 @@ $obj = get_queried_object();
 								if($image_caption) {
 									$title_att = ' data-caption="'.$image_caption.'"';
 								} ?>
-								<?php if($main_filename!==$filename) { ?>
-									<a class="popupImage" data-fancybox="images" rel="next" href="<?php echo $jj['url'];?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $jj['title'];?>" /></a>
-								<?php } ?>
+								<a class="popupImage gthumbnail" data-fancybox="images" data-filename="<?php echo $filename;?>" rel="next" href="<?php echo $jj['url'];?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $jj['title'];?>" /></a>
 							<?php } ?>
 						<?php } ?>
 						</div>
@@ -87,7 +84,7 @@ $obj = get_queried_object();
 									$title_att = ' data-caption="'.$image_caption.'"';
 								} ?>
 								<div class="gallerydiv">
-									<a class="viewImageLink hoverGalleryImage<?php echo $is_active?>" data-href="<?php echo $g['url'];?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $g['title'];?>" /></a>
+									<a class="viewImageLink hoverGalleryImage<?php echo $is_active?>" data-filename="<?php echo $filename;?>" data-href="<?php echo $g['url'];?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $g['title'];?>" /></a>
 								</div>
 							<?php } ?>
 							</div>
