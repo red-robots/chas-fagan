@@ -82,11 +82,12 @@ $obj = get_queried_object();
 								$image_src = $g['sizes']['thumbnail']; 
 								$image_caption = $g['caption'];
 								$title_att = '';
+								$is_active = ($main_filename==$filename) ? ' active':'';
 								if($image_caption) {
 									$title_att = ' data-caption="'.$image_caption.'"';
 								} ?>
 								<div class="gallerydiv">
-									<a class="viewImageLink hoverGalleryImage" data-href="<?php echo $g['url'];?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $g['title'];?>" /></a>
+									<a class="viewImageLink hoverGalleryImage<?php echo $is_active?>" data-href="<?php echo $g['url'];?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $g['title'];?>" /></a>
 								</div>
 							<?php } ?>
 							</div>
