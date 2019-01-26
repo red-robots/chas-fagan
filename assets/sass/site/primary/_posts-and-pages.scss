@@ -450,3 +450,41 @@ body.tax-arttypes.is_safari {
 		}
 	}
 } 
+
+.fancybox-content {
+	.fancybox-button {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 20000;
+	}	
+	button.fancybox-button--arrow_left,
+	button.fancybox-button--arrow_right {
+		background: rgba(0,0,0,.7);
+		box-shadow: none;
+		outline: none;
+		-webkit-appearance: none;
+		border: none;
+		&:hover,&:focus {
+			border: none;
+			box-shadow: none;
+			outline: none;
+			-webkit-appearance: none;
+		}
+	}
+	.fancybox-button--arrow_left {
+		left: -50px;
+	}
+	.fancybox-button--arrow_right {
+		right: -50px;
+	}
+	.fancybox-button[disabled] {
+		opacity: 0.4;
+	}
+}
+.fancybox-navigation {
+	.fancybox-button {
+		opacity: 0!important;
+		visibility: hidden!important;
+	}
+}

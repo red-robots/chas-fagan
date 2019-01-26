@@ -51,13 +51,20 @@ jQuery(document).ready(function ($) {
 	*
 	------------------------------------*/
 	$('[data-fancybox="images"]').fancybox({
+		clickContent    : false,
 		buttons: [
-		    "zoom",
 		    "slideShow",
 		    "fullScreen",
 		    "thumbs",
 		    "close"
-		]
+		],
+		afterLoad : function( instance, current ) {
+			var currentImageDiv = current.$content;
+			var arrow_buttons = $(".fancybox-navigation button").clone();
+			if ( instance.group.length > 1 && current.$content ) {
+				currentImageDiv.append(arrow_buttons);
+			}
+		}
 	});
 
 	/*
