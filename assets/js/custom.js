@@ -51,7 +51,7 @@ jQuery(document).ready(function ($) {
 	*
 	------------------------------------*/
 	$('[data-fancybox="images"]').fancybox({
-		clickContent    : false,
+		clickContent : false,
 		buttons: [
 		    "slideShow",
 		    "fullScreen",
