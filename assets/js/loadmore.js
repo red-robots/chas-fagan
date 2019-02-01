@@ -10,8 +10,9 @@ jQuery(document).ready(function($){
 
     function set_pop_up() {
         $('.colorbox').colorbox({
-            maxWidth: '90%',
-            retinaImage: true
+            rel:'gal',
+            maxWidth: '95%',
+            maxHeight: '95%'
         });
     }
 

@@ -69,8 +69,8 @@ jQuery(document).ready(function ($) {
 
 	$('.colorbox').colorbox({
 		rel:'gal',
-		maxWidth: '90%',
-		retinaImage: true
+		maxWidth: '95%',
+		maxHeight: '95%'
 	});
 
 	/*

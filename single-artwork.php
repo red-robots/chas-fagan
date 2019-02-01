@@ -44,8 +44,14 @@ $obj = get_queried_object();
 					<?php 
 						$post_thumbnail_id = get_post_thumbnail_id( $post_id );
 						$main_image = wp_get_attachment_url($post_thumbnail_id);
-						$main_image_src = wp_get_attachment_image_src($post_thumbnail_id,'full');
-						$main_filename = basename($main_image);
+						$main_image_src = wp_get_attachment_image_src($post_thumbnail_id,'slideshow');
+						$meta = wp_get_attachment_metadata($post_thumbnail_id);
+            			if($meta) {
+            				$main_filename = basename($meta['file']);
+            			} else {
+            				$main_filename = '';
+            			}
+
 						$sub_title = get_field('second_line_title');  
 						$galleries = get_field('gallery');  
 					?>
@@ -58,12 +64,13 @@ $obj = get_queried_object();
 							<?php foreach($galleries as $jj) {  
 								$filename = $jj['filename'];
 								$image_src = $jj['sizes']['thumbnail']; 
+								$large_image = $jj['sizes']['slideshow']; 
 								$image_caption = $jj['caption'];
 								$title_att = '';
 								if($image_caption) {
-									$title_att = ' data-caption="'.$image_caption.'"';
+									$title_att = ' title="'.$image_caption.'"';
 								} ?>
-								<a class="popupImage gthumbnail" data-fancybox="images" data-filename="<?php echo $filename;?>" rel="next" href="<?php echo $jj['url'];?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $jj['title'];?>" /></a>
+								<a class="popupImage gthumbnail colorbox" rel="gal" data-filename="<?php echo $filename;?>" href="<?php echo $large_image;?>"<?php echo $title_att;?>><img src="<?php echo $image_src;?>" alt="<?php echo $jj['title'];?>" /></a>
 							<?php } ?>
 						<?php } ?>
 						</div>
