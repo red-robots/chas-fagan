@@ -199,7 +199,8 @@ gulp.task( 'vendorsJs', function() {
 		'./assets/js/vendors/navigation.js',
 		'./assets/js/vendors/wow.js',
 		'./assets/js/vendors/jquery.lazy.min.js',
-		'./assets/js/vendors/jquery.fancybox.js'
+		'./assets/js/vendors/jquery.fancybox.js',
+		'./assets/js/vendors/jquery.colorbox.js'
 		] )
 		.pipe( concat( jsVendorFile + '.js' ) )
 		.pipe( gulp.dest( jsVendorDestination ) )

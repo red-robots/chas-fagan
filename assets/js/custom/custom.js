@@ -67,6 +67,12 @@ jQuery(document).ready(function ($) {
 		}
 	});
 
+	$('.colorbox').colorbox({
+		rel:'gal',
+		maxWidth: '90%',
+		retinaImage: true
+	});
+
 	/*
 	*
 	*	Isotope with Images Loaded
@@ -181,6 +187,5 @@ jQuery(document).ready(function ($) {
 			}
 		});
 	});
-
 
 });// END #####################################    END

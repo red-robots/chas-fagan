@@ -33,7 +33,6 @@ function acstarter_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'acstarter_body_classes' );
 
-
 function generate_sitemap($pageWithCats=null) {
     global $wpdb;
     $lists = array();
@@ -164,4 +163,100 @@ function generate_sitemap($pageWithCats=null) {
     
     return $lists;
     
+}
+
+add_action("wp_ajax_load_more", "load_more");
+add_action("wp_ajax_nopriv_load_more", "load_more");
+function load_more() {
+    $page = $_POST["page"]+1;
+    $taxonomy = $_POST["taxonomy"];
+    $term_id = $_POST["term_id"];
+    $perpage = $_POST["perpage"];
+    //$perpage = 3;
+
+    $content = get_galleries($taxonomy,$term_id,$page,$perpage);
+    if($content) {
+        $response = array('content'=>$content,'page' => $page);
+    } else {
+        $response = array('content'=>'','page' => -1);
+    }
+
+    echo json_encode($response);
+    die();
+}
+
+function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
+    $popup_categories = array(3,4);
+
+    ob_start();
+    $args = array(
+        'posts_per_page'=> $perpage,
+        'post_type'     => 'artwork',
+        'post_status'   => 'publish',
+        'paged'         => $page,
+        'tax_query' => array(
+            array(
+                'taxonomy' => $taxonomy,
+                'terms' => $term_id,
+                'include_children' => false 
+            )
+        )
+    );
+
+    $is_new = ($page>1) ? true : false;
+    $items = new WP_Query( $args );
+    if ( $items->have_posts() )  { ?>
+        <?php while ( $items->have_posts() ) : $items->the_post(); 
+            $image = get_the_post_thumbnail(); 
+            $post_id = get_the_ID();
+            $post_thumbnail_id = get_post_thumbnail_id( $post_id );
+            $image_src = wp_get_attachment_image_src($post_thumbnail_id,'slideshow');
+            if($image_src) {
+                $image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
+            } else {
+                $image_alt = '';
+            }
+            $sub_title = get_field('second_line_title'); 
+            $short_description = get_field('short_description'); 
+            $pagelink = get_permalink(); ?>
+            <?php if($image) { ?>
+                <?php if( in_array($term_id, $popup_categories) ) { ?>
+
+                    <?php /* Pop-up image */ ?>
+                    <div data-page="<?php echo $page; ?>" class="box item<?php echo ($is_new) ? ' newEntry':'';?>">
+                        <div class="inside clear">
+                            <a class="effect-zoe popup-image colorbox" rel="gal" title="<?php echo $image_alt; ?>" href="<?php echo $image_src[0]?>">
+                                <?php the_post_thumbnail('medium'); ?>
+                            </a>
+                        </div>
+                    </div>
+
+                <?php } else { ?>
+
+                    <?php /* Open new page */ ?>
+                    <div data-page="<?php echo $page; ?>" class="box box-with-link item<?php echo ($is_new) ? ' newEntry':'';?>" data-url="<?php echo $pagelink; ?>">
+                        <div class="inside clear">
+                            <figure class="effect-zoe">
+                                <?php the_post_thumbnail('medium'); ?>
+                                <figcaption>
+                                    <p class="title1"><?php echo get_the_title(); ?></p>
+                                    <p class="title2"><?php echo $sub_title; ?></p>
+                                    <?php if($short_description) { ?>
+                                    <div class="description"><?php echo $short_description; ?></div>
+                                    <?php } ?>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                <?php } ?>
+
+            <?php } ?>
+        <?php endwhile; wp_reset_postdata(); ?>
+    <?php } ?>
+
+    <?php
+    $content = ob_get_contents();
+    ob_end_clean();
+    return $content;
 }

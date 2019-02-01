@@ -49,30 +49,35 @@ get_header(); ?>
 			            )
 			        )
 				);
-				$items = get_posts( $args ); 
-				?>
+				$items = get_posts( $args );  ?>
 				<?php if($items) { 
 					$obj = $items[0]; 
 					$post_id = $obj->ID;
 					$pagelink = get_term_link($term_id);
 					$project_page_id = get_field('artwork_featured_image',$t);
+					$imageSRC = '';
+					$image_alt = '';
 					if($project_page_id) {
 						$post_thumbnail_id = get_post_thumbnail_id( $project_page_id );
 						$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
 						$imageSRC = $image[0];
 						$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
+					}
+
+					if($imageSRC) {
+						$featuredImage = $imageSRC;
 					} else {
 						$post_thumbnail_id = get_post_thumbnail_id( $post_id );
 						$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
-						$imageSRC = $image[0];
 						$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
-					}
-					?>
-					<?php if($image) { ?>
+						$featuredImage = $image[0];
+					} ?>
+
+					<?php if($featuredImage) { ?>
 						<div class="box box-with-link item" title="<?php echo $term_name; ?>" data-url="<?php echo $pagelink; ?>">
 							<div class="inside clear">
 								<figure class="effect-zoe">
-									<img class="featimg" src="<?php echo $imageSRC?>" alt="<?php echo $image_alt?>" />
+									<img class="featimg" src="<?php echo $featuredImage?>" alt="<?php echo $image_alt?>" />
 									<figcaption>
 										<p class="title1"><?php echo $term_name; ?></p>
 									</figcaption>
@@ -81,6 +86,7 @@ get_header(); ?>
 						</div>
 					<?php } ?>
 				<?php } ?>	
+
 			<?php } ?>	
 		</div>
 	</div>

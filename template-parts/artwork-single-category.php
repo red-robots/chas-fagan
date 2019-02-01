@@ -5,74 +5,31 @@ $taxonomy = (isset($obj->taxonomy)) ? $obj->taxonomy : '';
 $category_name = (isset($obj->name)) ? $obj->name : '';
 $term_slug = (isset($obj->slug) && $obj->slug) ? $obj->slug : '';
 $term_id = (isset($obj->term_id) && $obj->term_id) ? $obj->term_id : '';
+$perpage = 9;
 $popup_categories = array(3,4);
 ?>
 
-<div id="primary" class="full-content-area clear">
+<input type="hidden" id="perpage" value="<?php echo $perpage?>">
+<input type="hidden" id="termID" value="<?php echo $term_id?>">
+<input type="hidden" id="taxonomy" value="<?php echo $taxonomy?>">
+<input type="hidden" id="currentPage" value="1">
+
+<div id="primary" class="full-content-area clear artworkList">
 	<header class="page-header">
 		<h1 class="page-title"><?php echo $category_name; ?></h1>
 	</header>
 
 	<?php
-	$args = array(
-    	'showposts' => -1,
-        'post_type' => 'artwork',
-        'post_status' => 'publish',
-        'tax_query' => array(
-            array(
-                'taxonomy' => $taxonomy,
-                'terms' => $term_id,
-                'include_children' => false 
-            )
-        )
-	);
 
-	$items = new WP_Query( $args );  ?>
-	<?php if ( $items->have_posts() )  { ?>
+	$galleries = get_galleries($taxonomy,$term_id,1,$perpage);
+	if ( $galleries )  { ?>
 	<div class="art-post-entries clear">
-		<div class="grid masonry clear">
-			<?php while ( $items->have_posts() ) : $items->the_post(); 
-				$image = get_the_post_thumbnail(); 
-				$post_id = get_the_ID();
-				$post_thumbnail_id = get_post_thumbnail_id( $post_id );
-				$image_src = wp_get_attachment_image_src($post_thumbnail_id,'full');
-				$sub_title = get_field('second_line_title'); 
-				$short_description = get_field('short_description'); 
-				$pagelink = get_permalink(); ?>
-				<?php if($image) { ?>
-					<?php if( in_array($term_id, $popup_categories) ) { ?>
-
-						<?php /* Pop-up image */ ?>
-						<div class="box item">
-							<div class="inside clear">
-								<a class="effect-zoe popup-image" data-fancybox="images" rel="next" href="<?php echo $image_src[0]?>">
-									<?php the_post_thumbnail('large'); ?>
-								</a>
-							</div>
-						</div>
-
-					<?php } else { ?>
-
-						<?php /* Open new page */ ?>
-						<div class="box box-with-link item" data-url="<?php echo $pagelink; ?>">
-							<div class="inside clear">
-								<figure class="effect-zoe">
-									<?php the_post_thumbnail('large'); ?>
-									<figcaption>
-										<p class="title1"><?php echo get_the_title(); ?></p>
-										<p class="title2"><?php echo $sub_title; ?></p>
-										<?php if($short_description) { ?>
-										<div class="description"><?php echo $short_description; ?></div>
-										<?php } ?>
-									</figcaption>
-								</figure>
-							</div>
-						</div>
-
-					<?php } ?>
-
-				<?php } ?>
-			<?php endwhile; ?>
+		<div id="spinner">
+			<div class="inner"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        </div>
+		<div id="results" class="grid masonry2 clear">
+			<div class="grid-sizer"></div>
+			<?php echo $galleries; ?>
 		</div>
 	</div>
 	<?php } ?>

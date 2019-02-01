@@ -34,6 +34,8 @@ function acstarter_setup() {
    */
   add_theme_support( 'post-thumbnails' );
 
+  add_image_size( 'slideshow', 1000, 1000, false );
+
   // This theme uses wp_nav_menu() in one location.
   register_nav_menus( array(
     'primary' => esc_html__( 'Primary', 'acstarter' ),
