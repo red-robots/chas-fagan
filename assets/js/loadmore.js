@@ -5,17 +5,8 @@ jQuery(document).ready(function($){
         end_record = false;
 
     var $container = $('#results');
-    var $autoload = 0;
-    var $gallery_collapse = 0;
 
-    function set_pop_up() {
-        $('.colorbox').colorbox({
-            rel:'gal',
-            maxWidth: '95%',
-            maxHeight: '95%'
-        });
-    }
-
+    
     function portfolio_contents(el) {
         var sel = el;
         $('#spinner').hide();
@@ -80,6 +71,13 @@ jQuery(document).ready(function($){
         }
     }
 
+    function set_pop_up() {
+        $('.colorbox').colorbox({
+            rel:'gal',
+            maxWidth: '95%',
+            maxHeight: '95%'
+        });
+    }
 
     function click_action() {
         $(".box-with-link").on("click",function(){
@@ -88,32 +86,31 @@ jQuery(document).ready(function($){
         });
     }
 
-    function do_masonry() {
-        // var $container = $('.masonry').imagesLoaded( function() {
-        //     $container.isotope({
-        //         // options
-        //         itemSelector: '.item',
-        //             masonry: {
-        //                 gutter: 0
-        //             }
-        //          });
-        //     }
-        // );
-        $('.masonry2').masonry({
-            columnWidth: '.grid-sizer',
-            percentPosition: true
-        });
+    var screen_size = $("#page").outerWidth();
+
+    load_more_entries(screen_size);
+
+    function load_more_entries(screen_size) {
+        if(screen_size>=780) {
+            $(".tax-arttypes #page").on('scroll', function () {
+                if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+                    portfolio_contents( $("#results") );
+                }
+            });
+        } else { 
+            $(window).on('scroll', function() {
+                if( $(window).scrollTop() >= $('#results').offset().top + $('#results').outerHeight() - window.innerHeight ) {
+                    portfolio_contents( $("#results") );
+                }
+            });
+        }
     }
 
-    $("#page").scroll(function() {
-        var $this = $("#results");
-        var termID = $("input#termID").val();
-        var tax = $("input#taxonomy").val();
-        var pagenum = $("input#perpage").val();
-        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-            portfolio_contents( $("#results") );
-        }
+     $(window).on('resize', function(){
+        screen_size = $("#page").outerWidth();
+        load_more_entries(screen_size);
     });
 
+    
 
 });

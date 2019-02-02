@@ -210,7 +210,7 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
             $image = get_the_post_thumbnail(); 
             $post_id = get_the_ID();
             $post_thumbnail_id = get_post_thumbnail_id( $post_id );
-            $image_src = wp_get_attachment_image_src($post_thumbnail_id,'slideshow');
+            $image_src = wp_get_attachment_image_src($post_thumbnail_id,'large');
             if($image_src) {
                 $image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
             } else {
@@ -226,7 +226,7 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
                     <div data-page="<?php echo $page; ?>" class="box item<?php echo ($is_new) ? ' newEntry':'';?>">
                         <div class="inside clear">
                             <a class="effect-zoe popup-image colorbox" rel="gal" title="<?php echo $image_alt; ?>" href="<?php echo $image_src[0]?>">
-                                <?php the_post_thumbnail('medium'); ?>
+                                <?php the_post_thumbnail('medium_large'); ?>
                             </a>
                         </div>
                     </div>
@@ -237,7 +237,7 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
                     <div data-page="<?php echo $page; ?>" class="box box-with-link item<?php echo ($is_new) ? ' newEntry':'';?>" data-url="<?php echo $pagelink; ?>">
                         <div class="inside clear">
                             <figure class="effect-zoe">
-                                <?php the_post_thumbnail('medium'); ?>
+                                <?php the_post_thumbnail('medium_large'); ?>
                                 <figcaption>
                                     <p class="title1"><?php echo get_the_title(); ?></p>
                                     <p class="title2"><?php echo $sub_title; ?></p>
