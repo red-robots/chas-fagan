@@ -234,8 +234,8 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
                 <?php } else { ?>
 
                     <?php /* Open new page */ ?>
-                    <div data-page="<?php echo $page; ?>" class="box box-with-link item<?php echo ($is_new) ? ' newEntry':'';?>" data-url="<?php echo $pagelink; ?>">
-                        <div class="inside clear">
+                    <a data-page="<?php echo $page; ?>" class="box box-with-link item<?php echo ($is_new) ? ' newEntry':'';?>" href="<?php echo $pagelink; ?>">
+                        <span class="inside clear">
                             <figure class="effect-zoe">
                                 <?php the_post_thumbnail('medium_large'); ?>
                                 <figcaption>
@@ -246,8 +246,8 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
                                     <?php } ?>
                                 </figcaption>
                             </figure>
-                        </div>
-                    </div>
+                        </span>
+                    </a>
 
                 <?php } ?>
 

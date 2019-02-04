@@ -139,10 +139,10 @@ jQuery(document).ready(function ($) {
 	------------------------------------*/
 	new WOW().init();
 
-	$(".box-with-link").on("click",function(){
-		var url = $(this).attr('data-url');
-		window.location.href = url;
-	});
+	// $(".box-with-link").on("click",function(){
+	// 	var url = $(this).attr('data-url');
+	// 	window.location.href = url;
+	// });
 
 	// $('.hoverGalleryImage').hover(
 	// 	function(){
@@ -151,6 +151,7 @@ jQuery(document).ready(function ($) {
 			
 	// 	}
 	// );
+	
 
 	$(document).on("click",".hoverGalleryImage",function(e){
 		e.preventDefault();
