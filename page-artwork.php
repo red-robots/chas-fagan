@@ -54,20 +54,32 @@ get_header(); ?>
 					$obj = $items[0]; 
 					$post_id = $obj->ID;
 					$pagelink = get_term_link($term_id);
-					$project_page_id = get_field('artwork_featured_image',$t);
-					$imageSRC = '';
+					$categoryImage = get_field('artwork_featured_image',$t);
+					$featuredImage = '';
 					$image_alt = '';
-					if($project_page_id) {
-						$post_thumbnail_id = get_post_thumbnail_id( $project_page_id );
-						$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
-						$imageSRC = $image[0];
-						$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
-					}
+					// $imageSRC = '';
+					// $image_alt = '';
+					// if($project_page_id) {
+					// 	$post_thumbnail_id = get_post_thumbnail_id( $project_page_id );
+					// 	$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
+					// 	$imageSRC = $image[0];
+					// 	$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
+					// }
 
-					if($imageSRC) {
-						$featuredImage = $imageSRC;
+					// if($imageSRC) {
+					// 	$featuredImage = $imageSRC;
+					// } else {
+					// 	$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+					// 	$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
+					// 	$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
+					// 	$featuredImage = $image[0];
+					// } 
+
+					if($categoryImage) {
+						$featuredImage = $categoryImage['url'];
+						$image_alt = $categoryImage['title'];
 					} else {
-						$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+						$post_thumbnail_id = get_post_thumbnail_id($post_id);
 						$image = wp_get_attachment_image_src($post_thumbnail_id,'large');
 						$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
 						$featuredImage = $image[0];
@@ -85,6 +97,7 @@ get_header(); ?>
 							</div>
 						</div>
 					<?php } ?>
+
 				<?php } ?>	
 
 			<?php } ?>	
