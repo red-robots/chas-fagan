@@ -206,7 +206,7 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
     $is_new = ($page>1) ? true : false;
     $items = new WP_Query( $args );
     if ( $items->have_posts() )  { ?>
-        <?php while ( $items->have_posts() ) : $items->the_post(); 
+        <?php $ctr=1; while ( $items->have_posts() ) : $items->the_post(); 
             $image = get_the_post_thumbnail(); 
             $post_id = get_the_ID();
             $post_thumbnail_id = get_post_thumbnail_id( $post_id );
@@ -218,20 +218,23 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
             }
             $sub_title = get_field('second_line_title'); 
             $short_description = get_field('short_description'); 
-            $pagelink = get_permalink(); ?>
-            <?php if($image) { ?>
-                <?php if( in_array($term_id, $popup_categories) ) { ?>
+            $pagelink = get_permalink(); 
+            ?>
+            <?php if($image) {  ?>
+                <?php if( in_array($term_id, $popup_categories) ) { 
+                    $fileName = basename($image_src[0]);
+                    $slug_name = sanitize_title_with_dashes($fileName); ?>
 
                     <?php /* Pop-up image */ ?>
                     <div data-page="<?php echo $page; ?>" class="box item<?php echo ($is_new) ? ' newEntry':'';?>">
                         <div class="inside clear">
-                            <a class="effect-zoe popup-image colorbox" rel="gal" title="<?php echo $image_alt; ?>" href="<?php echo $image_src[0]?>">
+                            <a id="<?php echo $slug_name?>"  class="effect-zoe popup-image popUp2" rel="gal" title="<?php echo $image_alt; ?>" href="<?php echo $image_src[0]?>">
                                 <?php the_post_thumbnail('medium_large'); ?>
                             </a>
                         </div>
                     </div>
 
-                <?php } else { ?>
+                <?php $ctr++; } else { ?>
 
                     <?php /* Open new page */ ?>
                     <a data-page="<?php echo $page; ?>" class="box box-with-link item<?php echo ($is_new) ? ' newEntry':'';?>" href="<?php echo $pagelink; ?>">

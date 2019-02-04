@@ -151,7 +151,7 @@ jQuery(document).ready(function ($) {
 			
 	// 	}
 	// );
-	
+
 
 	$(document).on("click",".hoverGalleryImage",function(e){
 		e.preventDefault();
@@ -176,6 +176,17 @@ jQuery(document).ready(function ($) {
 			var thumbname = $(this).attr('data-filename');
 			if(thumbname==filename) {
 				$(this).trigger('click');
+			}
+		});
+	});
+
+	$(document).on("click",".popUp2",function(e){
+		e.preventDefault();
+		var picname = $(this).attr('id');
+		$('.referlink').each(function(){
+			var slug = $(this).attr('data-slug');
+			if(slug==picname) {
+				$(this).trigger("click");
 			}
 		});
 	});
