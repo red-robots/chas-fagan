@@ -181,26 +181,31 @@
     bottom: 0;
     padding: 15px;
     height: 0;
-    -webkit-transition: -webkit-transform 0.35s;
-    transition: transform 0.35s;
-    -webkit-transform: translate3d(0,100%,0);
-    transform: translate3d(0,100%,0);
     width: 100%;
     box-sizing: border-box;
     background: rgba(205,197,181,0.75);
 	color: #393535;
 	padding: 15px;
 	height: auto;
-	visibility: hidden;
+	visibility: visible;
+	@media screen and (min-width: $tabwidth) {
+		visibility: hidden;
+		-webkit-transition: -webkit-transform 0.35s;
+		transition: transform 0.35s;
+		-webkit-transform: translate3d(0,100%,0);
+		transform: translate3d(0,100%,0);
+	}
 }
 
 .effect-zoe:hover figcaption, 
 .effect-zoe:hover .title1,
 .effect-zoe:hover .title2,
 .effect-zoe:hover .description {
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
     visibility: visible;
+    @media screen and (min-width: $tabwidth) {
+    	-webkit-transform: translate3d(0,0,0);
+    	transform: translate3d(0,0,0);
+    }
 }
 
 
@@ -275,10 +280,14 @@
 		font-size: 14px;
 	}
 	.title1, .title2, .description {
-		-webkit-transition: -webkit-transform 0.35s;
-		transition: transform 0.35s;
-		-webkit-transform: translate3d(0,200%,0);
-		transform: translate3d(0,200%,0);
+
+		@media screen and (min-width: $tabwidth) {
+			-webkit-transition: -webkit-transform 0.35s;
+			transition: transform 0.35s;
+			-webkit-transform: translate3d(0,200%,0);
+			transform: translate3d(0,200%,0);
+		}
+		
 	}
 	.title2 {
 		transition-delay: .1s;
