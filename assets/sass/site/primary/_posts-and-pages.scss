@@ -187,8 +187,10 @@
 	color: #393535;
 	padding: 15px;
 	height: auto;
-	visibility: visible;
+	// visibility: visible;
+	display: none;
 	@media screen and (min-width: $tabwidth) {
+		display: block;
 		visibility: hidden;
 		-webkit-transition: -webkit-transform 0.35s;
 		transition: transform 0.35s;
