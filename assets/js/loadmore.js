@@ -75,7 +75,7 @@ jQuery(document).ready(function($){
         $('.colorbox').colorbox({
             rel:'gal',
             maxWidth: '95%',
-            maxHeight: '95%'
+            maxHeight: '90%'
         });
     }
 

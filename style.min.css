@@ -1955,6 +1955,8 @@ body.tax-arttypes.is_chrome #page::-webkit-scrollbar-thumb:hover,body.tax-arttyp
 .fancybox-content .fancybox-button--arrow_right{right:-50px}
 .fancybox-content .fancybox-button[disabled]{opacity:.4}
 .fancybox-navigation .fancybox-button{opacity:0 !important;visibility:hidden !important}
+#cboxTitle{position:static !important;padding:5px 10px}
+#cboxLoadedContent{margin-bottom:0}
 #cboxContent,#cboxTitle{color:#9c9484}
 #cboxCurrent{bottom:-18px;font-size:10px}
 .blog .format-aside .entry-title,.archive .format-aside .entry-title{display:none}

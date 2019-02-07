@@ -520,7 +520,13 @@ body.tax-arttypes.is_safari {
 		visibility: hidden!important;
 	}
 }
-
+#cboxTitle {
+	position: static!important;
+	padding: 5px 10px;
+}
+#cboxLoadedContent {
+	margin-bottom: 0;
+}
 #cboxContent, #cboxTitle {
 	// background: #393535;
 	color: $color-gold;
