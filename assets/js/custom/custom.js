@@ -7,18 +7,6 @@
 
 jQuery(document).ready(function ($) {
 	
-	/*
-        FAQ dropdowns
-	__________________________________________
-	*/
-	$('.question').click(function() {
-	 
-	    $(this).next('.answer').slideToggle(500);
-	    $(this).toggleClass('close');
-	    $(this).find('.plus-minus-toggle').toggleClass('collapsed');
-	    $(this).parent().toggleClass('active');
-	 
-	});
 
 	/*
 	*
@@ -78,15 +66,15 @@ jQuery(document).ready(function ($) {
 	*	Isotope with Images Loaded
 	*
 	------------------------------------*/
-	var $container = $('.masonry').imagesLoaded( function() {
-  	$container.isotope({
-    // options
-	 itemSelector: '.item',
-		  	masonry: {
-				gutter: 0
-			}
- 		 });
-	});
+	// var $container = $('.masonry').imagesLoaded( function() {
+ //  	$container.isotope({
+ //    // options
+	//  itemSelector: '.item',
+	// 	  	masonry: {
+	// 			gutter: 0
+	// 		}
+ // 		 });
+	// });
 
 	/*
 	*

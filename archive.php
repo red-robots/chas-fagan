@@ -12,7 +12,9 @@ $obj = get_queried_object();
 $taxonomy = (isset($obj->taxonomy)) ? $obj->taxonomy : '';
 $category_name = (isset($obj->name)) ? $obj->name : '';
 if($taxonomy=='arttypes') { 
-	get_template_part('template-parts/artwork-single-category');
+
+	get_template_part('template-parts/artwork-single-page');
+
 } else { ?>
 
 	<div id="primary" class="full-content-area clear">

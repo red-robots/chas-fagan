@@ -6,6 +6,7 @@ $category_name = (isset($obj->name)) ? $obj->name : '';
 $term_slug = (isset($obj->slug) && $obj->slug) ? $obj->slug : '';
 $term_id = (isset($obj->term_id) && $obj->term_id) ? $obj->term_id : '';
 $perpage = 9;
+$page = ( get_query_var( 'pg' ) ) ? absint( get_query_var( 'pg' ) ) : 1;
 $popup_categories = array(3,4);
 ?>
 
@@ -20,17 +21,18 @@ $popup_categories = array(3,4);
 	</header>
 
 	<?php
-
-	$galleries = get_galleries($taxonomy,$term_id,1,$perpage);
+	$next_page = admin_url() . 'admin-ajax.php?action=load_more_images&taxonomy='.$taxonomy.'&term_id='.$term_id.'&perpage='.$perpage.'&page=' . $page;
+	$galleries = get_galleries($taxonomy,$term_id,$page,$perpage);
 	if ( $galleries )  { ?>
-	<div class="art-post-entries clear">
-		<div id="spinner">
-			<div class="inner"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-        </div>
-		<div id="results" class="grid masonry2 clear">
-			<div class="grid-sizer"></div>
-			<?php echo $galleries; ?>
+		<div class="art-post-entries clear">
+			<div id="results" class="grid artworks clear are-images-unloaded">
+				<div class="grid__col-sizer"></div>
+				<div class="grid__gutter-sizer"></div>
+				<?php echo $galleries; ?>
+			</div>
 		</div>
+		<nav id="page-nav" class="navigation"><a href="<?php echo $next_page?>"></a></nav>
+
 
 		<div id="galleries_hidden" style="display:none;">
 			<?php 
@@ -54,7 +56,7 @@ $popup_categories = array(3,4);
 		    	$post_thumbnail_id = get_post_thumbnail_id( $g_id );
 	            $image_src = wp_get_attachment_image_src($post_thumbnail_id,'large');
 	            if($image_src) {
-	            	$image_thumb = wp_get_attachment_image_src($post_thumbnail_id,'medium_large');
+	            	$image_thumb = wp_get_attachment_image_src($post_thumbnail_id,'medium');
 	                $image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true);
 	            } else {
 	                $image_alt = '';
@@ -73,7 +75,6 @@ $popup_categories = array(3,4);
 		    	<?php } ?>
 		    <?php } ?>
 		</div>
-	</div>
 	<?php } ?>
 </div>
 

@@ -24,6 +24,14 @@ function acstarter_scripts() {
 		);
 
 	wp_enqueue_script( 
+			'infinite-scroll', 
+			get_template_directory_uri() . '/assets/js/vendors/jquery.infinitescroll.min.js', 
+			array(), '20120206', 
+			true 
+		);
+
+
+	wp_enqueue_script( 
 			'acstarter-custom', 
 			get_template_directory_uri() . '/assets/js/custom.js', 
 			array(), '20120206', 

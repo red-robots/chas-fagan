@@ -33,6 +33,12 @@ function acstarter_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'acstarter_body_classes' );
 
+function add_query_vars_filter( $vars ) {
+  $vars[] = "pg";
+  return $vars;
+}
+add_filter( 'query_vars', 'add_query_vars_filter' );
+
 function generate_sitemap($pageWithCats=null) {
     global $wpdb;
     $lists = array();
@@ -165,29 +171,43 @@ function generate_sitemap($pageWithCats=null) {
     
 }
 
-add_action("wp_ajax_load_more", "load_more");
-add_action("wp_ajax_nopriv_load_more", "load_more");
-function load_more() {
-    $page = $_POST["page"]+1;
-    $taxonomy = $_POST["taxonomy"];
-    $term_id = $_POST["term_id"];
-    $perpage = $_POST["perpage"];
-    //$perpage = 3;
+// add_action("wp_ajax_load_more", "load_more");
+// add_action("wp_ajax_nopriv_load_more", "load_more");
+// function load_more() {
+//     $page = $_POST["page"]+1;
+//     $taxonomy = $_POST["taxonomy"];
+//     $term_id = $_POST["term_id"];
+//     $perpage = $_POST["perpage"];
+//     $content = get_galleries($taxonomy,$term_id,$page,$perpage);
+//     if($content) {
+//         $response = array('content'=>$content,'page' => $page);
+//     } else {
+//         $response = array('content'=>'','page' => -1);
+//     }
+//     echo json_encode($response);
+//     die();
+// }
 
+add_action("wp_ajax_load_more_images", "load_more_images");
+add_action("wp_ajax_nopriv_load_more_images", "load_more_images");
+function load_more_images() {
+    $page = $_GET["page"];
+    $taxonomy = $_GET["taxonomy"];
+    $term_id = $_GET["term_id"];
+    $perpage = ($_GET["perpage"]) ? $_GET["perpage"] : 9;
     $content = get_galleries($taxonomy,$term_id,$page,$perpage);
-    if($content) {
-        $response = array('content'=>$content,'page' => $page);
-    } else {
-        $response = array('content'=>'','page' => -1);
-    }
-
-    echo json_encode($response);
+    echo $content;
     die();
 }
 
-function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
-    $popup_categories = array(3,4);
 
+
+function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
+    $term = get_term($term_id);
+    $slug = $term->slug;
+    $term_link = get_term_link($term_id);
+    $popup_categories = array(3,4);
+    //$next_page = admin_url() . 'admin-ajax.php?action=load_more_images&taxonomy='.$taxonomy.'&term_id='.$term_id.'&perpage='.$perpage.'&page=' . $page;
     ob_start();
     $args = array(
         'posts_per_page'=> $perpage,
@@ -204,6 +224,7 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
     );
 
     $is_new = ($page>1) ? true : false;
+    $is_new = false;
     $items = new WP_Query( $args );
     if ( $items->have_posts() )  { ?>
         <?php $ctr=1; while ( $items->have_posts() ) : $items->the_post(); 
@@ -226,10 +247,10 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
                     $slug_name = sanitize_title_with_dashes($fileName); ?>
 
                     <?php /* Pop-up image */ ?>
-                    <div data-page="<?php echo $page; ?>" class="box item<?php echo ($is_new) ? ' newEntry':'';?>">
+                    <div data-page="<?php echo $page; ?>" class="items_group_<?php echo $page; ?> grid__item box item<?php echo ($is_new) ? ' newEntry':'';?>">
                         <div class="inside clear">
                             <a id="<?php echo $slug_name?>"  class="effect-zoe popup-image popUp2" rel="gal" title="<?php echo $image_alt; ?>" href="<?php echo $image_src[0]?>">
-                                <?php the_post_thumbnail('medium_large'); ?>
+                                <?php the_post_thumbnail('medium'); ?>
                             </a>
                         </div>
                     </div>
@@ -237,10 +258,10 @@ function get_galleries($taxonomy,$term_id,$page=1,$perpage=9) {
                 <?php $ctr++; } else { ?>
 
                     <?php /* Open new page */ ?>
-                    <a data-page="<?php echo $page; ?>" class="box box-with-link item<?php echo ($is_new) ? ' newEntry':'';?>" href="<?php echo $pagelink; ?>">
+                    <a data-page="<?php echo $page; ?>" class="items_group_<?php echo $page; ?> grid__item box box-with-link item<?php echo ($is_new) ? ' newEntry':'';?>" href="<?php echo $pagelink; ?>">
                         <span class="inside clear">
                             <figure class="effect-zoe">
-                                <?php the_post_thumbnail('medium_large'); ?>
+                                <?php the_post_thumbnail('medium'); ?>
                                 <figcaption>
                                     <p class="title1"><?php echo get_the_title(); ?></p>
                                     <p class="title2"><?php echo $sub_title; ?></p>
