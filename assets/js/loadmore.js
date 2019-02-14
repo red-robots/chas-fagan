@@ -5,7 +5,6 @@ jQuery(document).ready(function($){
       columnWidth: '.grid__col-sizer',
       gutter: '.grid__gutter-sizer',
       percentPosition: true,
-      stagger: 33.33,
       // nicer reveal transition
       visibleStyle: { transform: 'translateY(0)', opacity: 1 },
       hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
