@@ -228,23 +228,13 @@
 	.artworks {
 		margin-left: -14px;
 		margin-right: -14px;
-  		@media screen and (min-width: $tabwidth) {
-			// column-count: 2;
-  	// 		column-gap: 0;
-  			// @include flexbox();
-  			// @include flexbox-wrap(wrap);
-  			// @include flexbox-align-content(center);
-  		}
-  		@media screen and (min-width: $midwidth) {
-  			//column-count: 3;
-  		}
 	}
 
 	.grid.are-images-unloaded .image-grid__item {
   		opacity: 0;
 	}
 
-	.grid__gutter-sizer { width: 0%; }
+	.grid__gutter-sizer { width: 0; }
 	.grid__col-sizer,
 	.box {
 		display: block;
